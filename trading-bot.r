@@ -34,53 +34,53 @@ curr_rsi14_api <- function(x) {
   rsi_gdax
 }
 # v.2
-rsi14_api_less_one <- function(x){
+rsi14_api_less_one <- function(x) {
   df <- rgdax::public_candles(product_id = "ETH-CAD", granularity = 900)
   rsi_gdax_less_one <- head(tail(TTR::RSI(df[, 5], n = 14), n = 2), n = 1)
   rsi_gdax_less_one
 }
-rsi14_api_less_two <- function(x){
+rsi14_api_less_two <- function(x) {
   df <- rgdax::public_candles(product_id = "ETH-CAD", granularity = 900)
   rsi_gdax_less_two <- head(tail(TTR::RSI(df[,5], n = 14), n = 3), n = 1)
   rsi_gdax_less_two
 }
-rsi14_api_less_three <- function(x){
+rsi14_api_less_three <- function(x) {
   df <- rgdax::public_candles(product_id = "ETH-CAD", granularity = 900)
   rsi_gdax_less_three <- head(tail(TTR::RSI(df[, 5], n = 14), n = 4), n = 1)
   rsi_gdax_less_three
 }
-rsi14_api_less_four <- function(x){
+rsi14_api_less_four <- function(x) {
   df <- rgdax::public_candles(product_id = "ETH-CAD", granularity = 900)
   rsi_gdax_less_four <- head(tail(TTR::RSI(df[, 5], n = 14), n = 5), n = 1)
   rsi_gdax_less_four
 }
 # v.2
-bid <- function(x){
+bid <- function(x) {
   bid <- public_orderbook(product_id = "ETH-CAD", level = 1)
   bid <- bid$bids[1]
   bid
 }
-ask <- function(x){
+ask <- function(x) {
   ask <- public_orderbook(product_id = "ETH-CAD", level = 1)
   ask <- ask$asks[1]
   ask
 }
-cad_hold <- function(x){
+cad_hold <- function(x) {
   holds(currency = "CAD", "api_key", "secret", "passphrase")
 }  
-eth_hold <- function(x){
+eth_hold <- function(x) {
   holds <- holds(currency = "ETH", "api_key", "secret", "passphrase")
   holds
 }
-cancel_orders <- function(x){
+cancel_orders <- function(x) {
   cancel_orders <- cancel_order("api_key", "secret", "passphrase")
   cancel_orders
 }
-buy_exe <- function(x){
+buy_exe <- function(x) {
   # get order size in iterative manner
   order_size <- round(curr_bal_cad() / ask(), 3)[1] - 0.005
   # place initial order
-  while(curr_bal_eth() == 0){
+  while(curr_bal_eth() == 0) {
     #order_size <- curr_bal_cad() / ask() - 0.009
     add_order(product_id = "ETH-CAD", api.key = "api_key", secret = "secret", passphrase = "passphrase", type = "limit", price = bid(), side = "b", size = order_size )
     # sleep to see if order takes
@@ -107,7 +107,7 @@ sell_exe <- function(x) {
     }
   }
 }
-position <- (read.csv("C:/R_Directory/position.csv", header = TRUE))[1,2]
+position <- (read.csv("C:/R_Directory/position.csv", header = TRUE))[1, 2]
 
 # v.2
 # Store variables so don't exceed rate limit of API
@@ -143,7 +143,7 @@ if (curr_bal_cad() >= 20) {        # if have more than $20 CAD start loop
               replyTo = c("Reply to someone else <your_username@gmail.com>"),
               subject = "GDAX ETH Test - Buy",
               body = paste("Your model says buy right now at price", bid()),
-              smtp = list(host.name = "smtp.gmail.com", port = 465, user.name = "your_username", passwd = "your_password", ssl = TRUE),
+              smtp = list(host.name = "smtp.gmail.com", port = 465, user.name = "username", passwd = "password", ssl = TRUE),
               authenticate = TRUE,
               send = TRUE)
     # 4 print for logs
@@ -151,22 +151,21 @@ if (curr_bal_cad() >= 20) {        # if have more than $20 CAD start loop
     Sys.sleep(3)
     # v.5
     # 5 Enter tiered limit sell orders
-    
     ## Order 1: take 1/3 profits at 1% gain
     order_size_tiered3 <- round(curr_bal_eth() / 3, 3)
     order_price_tiered3 <- round(bid() * 1.01, 2)
     Sys.sleep(1)
-    add_order(product_id = "ETH-CAD", api.key = "your_api_key", secret = "your_secret", passphrase = "your_passphrase", type = "limit", price = order_price_tiered3, side = "s",  size = order_size_tiered3 )
+    add_order(product_id = "ETH-CAD", api.key = "api_key", secret = "secret", passphrase = "passphrase", type = "limit", price = order_price_tiered3, side = "s",  size = order_size_tiered3 )
     Sys.sleep(20)
     ## Order 2: take 1/3 profits at 4% gain
     order_size_tiered5 <- round(curr_bal_eth() / 2, 3)
     order_price_tiered5 <- round(bid() * 1.04, 2)
-    add_order(product_id = "ETH-CAD", api.key = "your_api_key", secret = "your_secret", passphrase = "your_passphrase", type = "limit", price = order_price_tiered5, side = "s",  size = order_size_tiered5)
+    add_order(product_id = "ETH-CAD", api.key = "api_key", secret = "secret", passphrase = "passphrase", type = "limit", price = order_price_tiered5, side = "s",  size = order_size_tiered5)
     Sys.sleep(20)
     ## Order 3: take 1/3 profits at 7% gain
     order_size_tiered8 <- round(curr_bal_eth(), 3)
     order_price_tiered8 <- round(bid() * 1.07, 2)
-    add_order(product_id = "ETH-CAD", api.key = "your_api_key", secret = "your_secret", passphrase = "your_passphrase", type = "limit", price = order_price_tiered8, side = "s", size = order_size_tiered8 )
+    add_order(product_id = "ETH-CAD", api.key = "api_key", secret = "secret", passphrase = "passphrase", type = "limit", price = order_price_tiered8, side = "s", size = order_size_tiered8 )
     # v.5
   } else {
     "nobuy"
@@ -177,5 +176,4 @@ if (curr_bal_cad() >= 20) {        # if have more than $20 CAD start loop
 
 # print systime for logs
 Sys.time()
-
 print("***************** End Log Entry *****************")
