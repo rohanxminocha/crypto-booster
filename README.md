@@ -1,1 +1,1 @@
-# crypto-trading-bot
+# Cryptocurrency Trading Bot
