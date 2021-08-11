@@ -54,6 +54,7 @@ rsi14_api_less_four <- function(x) {
   rsi_gdax_less_four <- head(tail(TTR::RSI(df[, 5], n = 14), n = 5), n = 1)
   rsi_gdax_less_four
 }
+
 # v.2
 bid <- function(x) {
   bid <- public_orderbook(product_id = "ETH-CAD", level = 1)
