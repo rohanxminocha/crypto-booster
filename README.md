@@ -39,6 +39,4 @@ To capture profits, we now put three tiered limit sell orders. Our first limit s
 
 With the inclusion of neural networks from the Keras module from Tensorflow for Rstudio, I'm working on enhancing this script. These neural networks make the script considerably more complicated, but they're very effective at uncovering hidden patterns in the data. Furthermore, the TTR package includes a wide variety of financial functions and technical indicators that may be utilised to enhance your model. <br>
 
-Having saying that, **do not gamble with more money than you can afford to lose. The stock market is not a game, and you may and will lose money.**
-
 > To further imporve on this Cryptocurrency Trading Bot and completely remove human error out of the trading process, you may use the Windows Task Scheduler to automate this script. 
