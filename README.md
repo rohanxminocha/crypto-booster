@@ -1,5 +1,4 @@
-# Cryptocurrency Trading Bot
-**The GDAX API used is no longer in service**
+# Crypto Booster
 
 # Context
 The Python programming language is used by many "bot traders" to conduct these transactions. You may discover links to Python code in several Github repositories if you google "crypto trading bot." Since I am exploring and learning about the world of Data Science, I am using the **R language**.
